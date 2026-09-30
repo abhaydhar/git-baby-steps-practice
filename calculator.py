@@ -5,4 +5,8 @@ def multiply(a, b):
 
 def divide(a, b):
     """Return the quotient of two numbers."""
-    return a / b
+    return a / b 
+
+def divides(a, b):
+    """Return the quotients of two numbers."""
+    return a / b 
