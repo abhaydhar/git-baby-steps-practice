@@ -14,6 +14,13 @@
 
 ---
 
+- [`./instructions/update-stale-open-tickets.agent.md`](./update-stale-open-tickets.agent.md) — Identify users whose Jira tickets remain open from past sprints and prepare a concise update.
+  + Keywords: stale tickets, past sprints, open tickets, Jira assignee update, sprint follow-up
+  + Target: `**/*.md`
+  + Exceptions: use only when processing Jira issue data for unresolved past-sprint work
+
+---
+
 - [`./instructions/main.agent.md`](./main.agent.md) — Catalog of instructions for this project.
   + Keywords: instructions, catalog, workflow, rules
   + Target: `**/*.md`
