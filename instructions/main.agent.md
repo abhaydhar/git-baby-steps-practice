@@ -1,9 +1,9 @@
 # Instruction Catalog
 
-- [`./instructions/create-status-report.agent.md`](./create-status-report.agent.md) — Generate concise weekly status reports in Markdown.
+- [`./instructions/create-status-report.agent.md`](./create-status-report.agent.md) — Battle-tested: generates concise weekly status reports in Markdown.
   + Keywords: weekly status report, status update, accomplishments, blockers, next week
   + Target: `**/*.md`
-  + Exceptions: use the standard status-report structure only
+  + Exceptions: use the standard status-report structure only; reject malformed numbered lists and stray text
 
 ---
 
