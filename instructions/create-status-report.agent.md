@@ -23,7 +23,8 @@ Write a Markdown status report with exactly these sections in this order:
 - Keep items specific and time-bound when possible.
 
 Requirements:
-- Use Markdown headings and bullet points only.
+- Use Markdown headings and unordered bullet points only.
+- Do not use numbered lists, ordered lists, or list markers such as `1.`, `2.`, `3.`.
 - Keep the total output to 20 lines or fewer.
 - Use a professional tone.
 - Remove fluff words, marketing language, and filler text.
