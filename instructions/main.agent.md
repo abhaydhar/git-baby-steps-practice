@@ -7,6 +7,13 @@
 
 ---
 
+- [`./instructions/calculate-compound-interest.agent.md`](./calculate-compound-interest.agent.md) — Use the compound-interest CLI and present its results.
+  + Keywords: compound interest, interest calculation, principal, annual rate, compounding frequency
+  + Target: compound-interest calculation requests
+  + Exceptions: ask for missing inputs; annual rate is entered as a percentage
+
+---
+
 - [`./instructions/creating-instructions.agent.md`](./creating-instructions.agent.md) — Create and maintain project instruction files and the instruction catalog.
   + Keywords: create instruction, create instructions, add workflow, setup instruction, instruction catalog
   + Target: `**/*.md`
