@@ -25,6 +25,9 @@ Write a Markdown status report with exactly these sections in this order:
 Requirements:
 - Use Markdown headings and unordered bullet points only.
 - Do not use numbered lists, ordered lists, or list markers such as `1.`, `2.`, `3.`.
+- Output must contain exactly these three sections in this order: `## Accomplishments`, `## Blockers`, `## Next Week`.
+- Each section must contain only bullet points; no paragraphs, no tables, no extra headings, and no stray text.
+- If the provided input is malformed, incomplete, or inconsistent, ignore the malformed content and generate a clean, valid report from the required structure only.
 - Keep the total output to 20 lines or fewer.
 - Use a professional tone.
 - Remove fluff words, marketing language, and filler text.
