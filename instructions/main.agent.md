@@ -10,7 +10,16 @@
 - [`./instructions/calculate-compound-interest.agent.md`](./calculate-compound-interest.agent.md) — Use the compound-interest CLI and present its results.
   + Keywords: compound interest, interest calculation, principal, annual rate, compounding frequency
   + Target: compound-interest calculation requests
+  + Tool: `./tools/compound_interest.py`
   + Exceptions: ask for missing inputs; annual rate is entered as a percentage
+
+---
+
+- [`./instructions/calculate-sprint-velocity-ins.agent.md`](./calculate-sprint-velocity-ins.agent.md) — Use the sprint-velocity CLI to total completed story points for a project.
+  + Keywords: sprint velocity, story points, completed points, project code
+  + Target: sprint-velocity calculation requests
+  + Tool: `./tools/sprint-velocity.py`
+  + Exceptions: requires a project code and one or more completed story-point values
 
 ---
 
