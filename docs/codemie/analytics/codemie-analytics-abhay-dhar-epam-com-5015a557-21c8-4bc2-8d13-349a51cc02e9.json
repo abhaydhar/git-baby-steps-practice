@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-26T06:29:10.126Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 45733,
+      "turns": 6,
+      "files": 3,
+      "netLines": 0,
+      "toolCallsTotal": 6,
+      "toolSuccessRate": 50,
+      "totalCostUSD": 0.25936,
+      "cacheReadCostUSD": 0.03547,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [
+      "claude-opus-4-6-v1"
+    ],
+    "estimatedModels": [],
+    "localModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "abhay_dhar@epam.com",
+    "periodStart": "2026-10-26T06:28:21.249Z",
+    "periodEnd": "2026-10-26T06:29:06.982Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "5015a557-21c8-4bc2-8d13-349a51cc02e9",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "list interview of candidate abhay dhar , he was the candidate, all tools are pre-approved , candidate ID is 8760000000034919900",
+      "project": "C:\\workspace\\hello-genai\\work\\module03-task",
+      "branch": "main",
+      "startTime": 1792996101249,
+      "durationMs": 45733,
+      "turns": 6,
+      "fileOps": 3,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 6,
+      "toolCallsSuccess": 3,
+      "toolCallsFailure": 3,
+      "models": [
+        "claude-opus-4-6"
+      ],
+      "languages": [
+        "markdown",
+        "json"
+      ],
+      "tools": [
+        {
+          "toolName": "Read",
+          "totalCalls": 2,
+          "successCount": 2,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "mcp__interview__search_interview_artifacts",
+          "totalCalls": 2,
+          "successCount": 0,
+          "failureCount": 2,
+          "successRate": 0
+        },
+        {
+          "toolName": "Glob",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "mcp__interview__bulk_interview_export",
+          "totalCalls": 1,
+          "successCount": 0,
+          "failureCount": 1,
+          "successRate": 0
+        }
+      ],
+      "tokens": {
+        "input": 8,
+        "output": 1279,
+        "cacheRead": 285150,
+        "cacheCreation": 34088,
+        "cacheCreation1h": 34088,
+        "total": 320525
+      },
+      "costUSD": 0.25936,
+      "cacheReadCostUSD": 0.03547,
+      "perModelCost": [
+        {
+          "model": "claude-opus-4-6",
+          "tokens": {
+            "input": 4,
+            "output": 344,
+            "cacheRead": 70940,
+            "cacheCreation": 21527,
+            "cacheCreation1h": 21527,
+            "total": 92815
+          },
+          "costUSD": 0.25936,
+          "unpriced": false
+        },
+        {
+          "model": "claude-opus-4-6-v1",
+          "tokens": {
+            "input": 4,
+            "output": 935,
+            "cacheRead": 214210,
+            "cacheCreation": 12561,
+            "cacheCreation1h": 12561,
+            "total": 227710
+          },
+          "costUSD": 0,
+          "unpriced": true
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "C:\\Users\\AbhayDhar\\.claude\\projects\\C--workspace-hello-genai-work-module03-task\\c35e5b7e-4f31-497d-b522-6a308789435c.jsonl",
+      "costSeries": [
+        {
+          "t": 1792996110897,
+          "cost": 0.124905,
+          "tokens": 45971
+        },
+        {
+          "t": 1792996116973,
+          "cost": 0.25936,
+          "tokens": 92815
+        },
+        {
+          "t": 1792996122654,
+          "cost": 0.25936,
+          "tokens": 149285
+        },
+        {
+          "t": 1792996128225,
+          "cost": 0.25936,
+          "tokens": 205995
+        },
+        {
+          "t": 1792996136525,
+          "cost": 0.25936,
+          "tokens": 263118
+        },
+        {
+          "t": 1792996144225,
+          "cost": 0.25936,
+          "tokens": 320525
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 0.25936,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "observedEnd": 1792996146982,
+      "rootOwnTokens": {
+        "input": 8,
+        "output": 1279,
+        "cacheRead": 285150,
+        "cacheCreation": 34088,
+        "cacheCreation1h": 34088,
+        "total": 320525
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "modelTimeline": [
+        {
+          "t": 1792996110897,
+          "model": "claude-opus-4-6",
+          "costUSD": 0.124905,
+          "tokens": 45971
+        },
+        {
+          "t": 1792996116973,
+          "model": "claude-opus-4-6",
+          "costUSD": 0.134455,
+          "tokens": 46844
+        },
+        {
+          "t": 1792996122654,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 56470
+        },
+        {
+          "t": 1792996128225,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 56710
+        },
+        {
+          "t": 1792996136525,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 57123
+        },
+        {
+          "t": 1792996144225,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 57407
+        }
+      ],
+      "routedTurnsPct": 0,
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

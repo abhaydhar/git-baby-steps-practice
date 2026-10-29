@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-26T06:14:14.853Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 44889,
+      "turns": 7,
+      "files": 2,
+      "netLines": 0,
+      "toolCallsTotal": 6,
+      "toolSuccessRate": 50,
+      "totalCostUSD": 0.125435,
+      "cacheReadCostUSD": 0.017735,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [
+      "claude-opus-4-6-v1"
+    ],
+    "estimatedModels": [],
+    "localModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "abhay_dhar@epam.com",
+    "periodStart": "2026-10-26T06:13:26.823Z",
+    "periodEnd": "2026-10-26T06:14:11.712Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "905279c3-b8a5-4918-826f-83ef14b5408c",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "list interview of candidate abhay dhar , he was the candidate who has was interview done in month of April 2026",
+      "project": "C:\\workspace\\hello-genai\\work\\module03-task",
+      "branch": "main",
+      "startTime": 1792995206823,
+      "durationMs": 44889,
+      "turns": 7,
+      "fileOps": 2,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 6,
+      "toolCallsSuccess": 3,
+      "toolCallsFailure": 3,
+      "models": [
+        "claude-opus-4-6"
+      ],
+      "languages": [
+        "markdown"
+      ],
+      "tools": [
+        {
+          "toolName": "mcp__interview__search_interview_artifacts",
+          "totalCalls": 2,
+          "successCount": 0,
+          "failureCount": 2,
+          "successRate": 0
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Grep",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Glob",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "mcp__interview__bulk_interview_export",
+          "totalCalls": 1,
+          "successCount": 0,
+          "failureCount": 1,
+          "successRate": 0
+        }
+      ],
+      "tokens": {
+        "input": 9,
+        "output": 1346,
+        "cacheRead": 319155,
+        "cacheCreation": 47523,
+        "cacheCreation1h": 47523,
+        "total": 368033
+      },
+      "costUSD": 0.125435,
+      "cacheReadCostUSD": 0.017735,
+      "perModelCost": [
+        {
+          "model": "claude-opus-4-6",
+          "tokens": {
+            "input": 3,
+            "output": 169,
+            "cacheRead": 35470,
+            "cacheCreation": 10346,
+            "cacheCreation1h": 10346,
+            "total": 45988
+          },
+          "costUSD": 0.125435,
+          "unpriced": false
+        },
+        {
+          "model": "claude-opus-4-6-v1",
+          "tokens": {
+            "input": 6,
+            "output": 1177,
+            "cacheRead": 283685,
+            "cacheCreation": 37177,
+            "cacheCreation1h": 37177,
+            "total": 322045
+          },
+          "costUSD": 0,
+          "unpriced": true
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "C:\\Users\\AbhayDhar\\.claude\\projects\\C--workspace-hello-genai-work-module03-task\\adc7902a-667f-496a-8be7-4d46aa4a0144.jsonl",
+      "costSeries": [
+        {
+          "t": 1792995217335,
+          "cost": 0.125435,
+          "tokens": 45988
+        },
+        {
+          "t": 1792995222370,
+          "cost": 0.125435,
+          "tokens": 92768
+        },
+        {
+          "t": 1792995224632,
+          "cost": 0.125435,
+          "tokens": 139843
+        },
+        {
+          "t": 1792995232021,
+          "cost": 0.125435,
+          "tokens": 196472
+        },
+        {
+          "t": 1792995236085,
+          "cost": 0.125435,
+          "tokens": 253306
+        },
+        {
+          "t": 1792995242983,
+          "cost": 0.125435,
+          "tokens": 310509
+        },
+        {
+          "t": 1792995248882,
+          "cost": 0.125435,
+          "tokens": 368033
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 0.125435,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "observedEnd": 1792995251712,
+      "rootOwnTokens": {
+        "input": 9,
+        "output": 1346,
+        "cacheRead": 319155,
+        "cacheCreation": 47523,
+        "cacheCreation1h": 47523,
+        "total": 368033
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "modelTimeline": [
+        {
+          "t": 1792995217335,
+          "model": "claude-opus-4-6",
+          "costUSD": 0.125435,
+          "tokens": 45988
+        },
+        {
+          "t": 1792995222370,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 46780
+        },
+        {
+          "t": 1792995224632,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 47075
+        },
+        {
+          "t": 1792995232021,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 56629
+        },
+        {
+          "t": 1792995236085,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 56834
+        },
+        {
+          "t": 1792995242983,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 57203
+        },
+        {
+          "t": 1792995248882,
+          "model": "claude-opus-4-6-v1",
+          "costUSD": 0,
+          "tokens": 57524
+        }
+      ],
+      "routedTurnsPct": 0,
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

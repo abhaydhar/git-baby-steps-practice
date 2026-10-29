@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "interview": {
+      "type": "stdio",
+      "command": "codemie-mcp-proxy",
+      "args": [
+        "https://mcp.epam.com/mcp/interview"
+      ],
+      "env": {}
+    }
+  }
+}

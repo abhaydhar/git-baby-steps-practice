@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-26T06:07:23.071Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 15813,
+      "turns": 2,
+      "files": 1,
+      "netLines": 0,
+      "toolCallsTotal": 1,
+      "toolSuccessRate": 100,
+      "totalCostUSD": 0.92454,
+      "cacheReadCostUSD": 0,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "estimatedModels": [],
+    "localModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "userEmail": "abhay_dhar@epam.com",
+    "periodStart": "2026-10-26T06:07:04.092Z",
+    "periodEnd": "2026-10-26T06:07:19.905Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "27e1ec7b-9c9f-4f07-8cfd-94ea9ede2bce",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "list mcp of epam",
+      "project": "C:\\workspace\\hello-genai\\work\\module03-task",
+      "branch": "main",
+      "startTime": 1792994824092,
+      "durationMs": 15813,
+      "turns": 2,
+      "fileOps": 1,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 1,
+      "toolCallsSuccess": 1,
+      "toolCallsFailure": 0,
+      "models": [
+        "claude-opus-4-6"
+      ],
+      "languages": [
+        "json"
+      ],
+      "tools": [
+        {
+          "toolName": "Read",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 4,
+        "output": 248,
+        "cacheRead": 0,
+        "cacheCreation": 91832,
+        "cacheCreation1h": 91832,
+        "total": 92084
+      },
+      "costUSD": 0.92454,
+      "cacheReadCostUSD": 0,
+      "perModelCost": [
+        {
+          "model": "claude-opus-4-6",
+          "tokens": {
+            "input": 4,
+            "output": 248,
+            "cacheRead": 0,
+            "cacheCreation": 91832,
+            "cacheCreation1h": 91832,
+            "total": 92084
+          },
+          "costUSD": 0.92454,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "C:\\Users\\AbhayDhar\\.claude\\projects\\C--workspace-hello-genai-work-module03-task\\79b5cb64-f976-4209-84e5-b1bab7b702f6.jsonl",
+      "costSeries": [
+        {
+          "t": 1792994832238,
+          "cost": 0.461275,
+          "tokens": 45928
+        },
+        {
+          "t": 1792994836411,
+          "cost": 0.9245399999999999,
+          "tokens": 92084
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 0.92454,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "observedEnd": 1792994839905,
+      "rootOwnTokens": {
+        "input": 4,
+        "output": 248,
+        "cacheRead": 0,
+        "cacheCreation": 91832,
+        "cacheCreation1h": 91832,
+        "total": 92084
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "modelTimeline": [
+        {
+          "t": 1792994832238,
+          "model": "claude-opus-4-6",
+          "costUSD": 0.461275,
+          "tokens": 45928
+        },
+        {
+          "t": 1792994836411,
+          "model": "claude-opus-4-6",
+          "costUSD": 0.463265,
+          "tokens": 46156
+        }
+      ],
+      "routedTurnsPct": 0,
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}
