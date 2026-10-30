@@ -7,6 +7,10 @@
         "https://mcp.epam.com/mcp/interview"
       ],
       "env": {}
+    },
+    "jira": {
+      "type": "http",
+      "url": "https://mcp.epam.com/mcp/jira"
     }
   }
 }

@@ -12,39 +12,39 @@
 
 ### 1.1 Confirm the Jira environment
 
-- [ ] Confirm the Jira Server URL and supported API version. **[MCP: jira]**
-- [ ] Record the Jira Server version in the project configuration and release notes. **[MCP + Custom skill]**
-- [ ] Confirm the Jira project key, project identifier, and sprint fields. **[MCP: jira]**
-- [ ] Confirm the field mappings for status, assignee, due date, priority, issue type, and any optional story points. **[MCP: jira]**
-- [ ] Identify the Jira API endpoints required for sprints and issues. **[MCP: jira]**
-- [ ] Confirm whether the dashboard must retrieve only summary data or full issue details for external users. **[Custom skill]**
+- [ ] Confirm the Jira Server URL and supported API version ([GitHub issue #1](https://github.com/abhaydhar/jira-confluence-automation/issues/1)). **[MCP: jira]**
+- [ ] Record the Jira Server version in the project configuration and release notes ([GitHub issue #2](https://github.com/abhaydhar/jira-confluence-automation/issues/2)). **[MCP + Custom skill]**
+- [ ] Confirm the Jira project key, project identifier, and sprint fields ([GitHub issue #3](https://github.com/abhaydhar/jira-confluence-automation/issues/3)). **[MCP: jira]**
+- [ ] Confirm the field mappings for status, assignee, due date, priority, issue type, and any optional story points ([GitHub issue #4](https://github.com/abhaydhar/jira-confluence-automation/issues/4)). **[MCP: jira]**
+- [ ] Identify the Jira API endpoints required for sprints and issues ([GitHub issue #5](https://github.com/abhaydhar/jira-confluence-automation/issues/5)). **[MCP: jira]**
+- [ ] Confirm whether the dashboard must retrieve only summary data or full issue details for external users ([GitHub issue #6](https://github.com/abhaydhar/jira-confluence-automation/issues/6)). **[Custom skill]**
 
 ### 1.2 Confirm access and ownership
 
-- [ ] Identify the team lead responsible for dashboard maintenance. **[Custom skill]**
-- [ ] Define the authorized Jira integration identity and authentication method. **[MCP + Custom skill]**
-- [ ] Verify the integration identity has permission to read the required sprints and issues. **[MCP: jira]**
-- [ ] Define internal and external stakeholder groups. **[Custom skill]**
-- [ ] Obtain approval for external stakeholder access through Jira permissions. **[Custom skill]**
-- [ ] Document the application-level authorization boundary and confirm that Jira native access controls are authoritative. **[Custom skill]**
+- [ ] Identify the team lead responsible for dashboard maintenance ([GitHub issue #7](https://github.com/abhaydhar/jira-confluence-automation/issues/7)). **[Custom skill]**
+- [ ] Define the authorized Jira integration identity and authentication method ([GitHub issue #8](https://github.com/abhaydhar/jira-confluence-automation/issues/8)). **[MCP + Custom skill]**
+- [ ] Verify the integration identity has permission to read the required sprints and issues ([GitHub issue #9](https://github.com/abhaydhar/jira-confluence-automation/issues/9)). **[MCP: jira]**
+- [ ] Define internal and external stakeholder groups ([GitHub issue #10](https://github.com/abhaydhar/jira-confluence-automation/issues/10)). **[Custom skill]**
+- [ ] Obtain approval for external stakeholder access through Jira permissions ([GitHub issue #11](https://github.com/abhaydhar/jira-confluence-automation/issues/11)). **[Custom skill]**
+- [ ] Document the application-level authorization boundary and confirm that Jira native access controls are authoritative ([GitHub issue #12](https://github.com/abhaydhar/jira-confluence-automation/issues/12)). **[Custom skill]**
 
 ### 1.3 Establish the application foundation
 
-- [ ] Select the web framework and frontend runtime. **[Custom skill]**
-- [ ] Define the repository structure for frontend, backend, configuration, tests, and documentation. **[Custom skill]**
-- [ ] Add a versioned configuration file for Jira endpoint, authentication, project, and refresh settings. **[Custom skill]**
-- [ ] Add environment-variable handling for secrets and non-secret configuration. **[Custom skill]**
-- [ ] Add a structured logging configuration and a consistent error-handling policy. **[Custom skill]**
-- [ ] Add dependency version constraints and a reproducible install process. **[Custom skill]**
-- [ ] Create a local development configuration that does not contain real credentials. **[Custom skill]**
+- [ ] Select the web framework and frontend runtime ([GitHub issue #13](https://github.com/abhaydhar/jira-confluence-automation/issues/13)). **[Custom skill]**
+- [ ] Define the repository structure for frontend, backend, configuration, tests, and documentation ([GitHub issue #14](https://github.com/abhaydhar/jira-confluence-automation/issues/14)). **[Custom skill]**
+- [ ] Add a versioned configuration file for Jira endpoint, authentication, project, and refresh settings ([GitHub issue #15](https://github.com/abhaydhar/jira-confluence-automation/issues/15)). **[Custom skill]**
+- [ ] Add environment-variable handling for secrets and non-secret configuration ([GitHub issue #16](https://github.com/abhaydhar/jira-confluence-automation/issues/16)). **[Custom skill]**
+- [ ] Add a structured logging configuration and a consistent error-handling policy ([GitHub issue #17](https://github.com/abhaydhar/jira-confluence-automation/issues/17)). **[Custom skill]**
+- [ ] Add dependency version constraints and a reproducible install process ([GitHub issue #18](https://github.com/abhaydhar/jira-confluence-automation/issues/18)). **[Custom skill]**
+- [ ] Create a local development configuration that does not contain real credentials ([GitHub issue #19](https://github.com/abhaydhar/jira-confluence-automation/issues/19)). **[Custom skill]**
 
 ### 1.4 Define the implementation contract
 
-- [ ] Define the Jira API response model for sprint summaries and issue details. **[MCP + Custom skill]**
-- [ ] Define the normalized dashboard data model. **[Custom skill]**
-- [ ] Define the behavior for missing assignees, due dates, priorities, and statuses. **[Custom skill]**
-- [ ] Define the behavior for empty, malformed, or partially unavailable Jira responses. **[Custom skill]**
-- [ ] Define the default filter values and the behavior when no sprint is selected. **[Custom skill]**
+- [ ] Define the Jira API response model for sprint summaries and issue details ([GitHub issue #20](https://github.com/abhaydhar/jira-confluence-automation/issues/20)). **[MCP + Custom skill]**
+- [ ] Define the normalized dashboard data model ([GitHub issue #21](https://github.com/abhaydhar/jira-confluence-automation/issues/21)). **[Custom skill]**
+- [ ] Define the behavior for missing assignees, due dates, priorities, and statuses ([GitHub issue #22](https://github.com/abhaydhar/jira-confluence-automation/issues/22)). **[Custom skill]**
+- [ ] Define the behavior for empty, malformed, or partially unavailable Jira responses ([GitHub issue #23](https://github.com/abhaydhar/jira-confluence-automation/issues/23)). **[Custom skill]**
+- [ ] Define the default filter values and the behavior when no sprint is selected ([GitHub issue #24](https://github.com/abhaydhar/jira-confluence-automation/issues/24)). **[Custom skill]**
 
 ## Phase 2: Core Features
 
