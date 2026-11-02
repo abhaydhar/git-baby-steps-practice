@@ -1,5 +1,12 @@
 # Instruction Catalog
 
+- [`./instructions/validate-instructions.agent.md`](./validate-instructions.agent.md) — Review each instruction file for one clear responsibility.
+  + Keywords: instruction review, single responsibility, SRP audit
+  + Target: `instructions/*.md`
+  + Exceptions: report empty or unreadable files as unassessable; do not edit files during the audit
+
+---
+
 - [`./instructions/create-status-report.agent.md`](./create-status-report.agent.md) — Battle-tested: generates concise weekly status reports in Markdown.
   + Keywords: weekly status report, status update, accomplishments, blockers, next week
   + Target: `**/*.md`
