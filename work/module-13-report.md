@@ -11,6 +11,20 @@
         "https://mcp.epam.com/mcp/interview"
       ],
       "env": {}
+    },
+    "jira": {
+      "type": "http",
+      "url": "https://mcp.epam.com/mcp/jira"
+    },
+    "echo-windows": {
+      "type": "stdio",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "./path/to/mcp-echo.ps1"
+      ]
     }
   }
 }
@@ -18,6 +32,8 @@
 
 ## Configured Servers
 - interview
+- jira
+- echo-windows
 
 ## MCP Tool Test
 - Tool used: interview-get_session_types

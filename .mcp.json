@@ -11,6 +11,16 @@
     "jira": {
       "type": "http",
       "url": "https://mcp.epam.com/mcp/jira"
+    },
+    "echo-windows": {
+      "type": "stdio",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "./path/to/mcp-echo.ps1"
+      ]
     }
   }
 }
