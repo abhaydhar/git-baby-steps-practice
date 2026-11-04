@@ -1,528 +1,260 @@
-# Implementation Tasks: Jira Sprint Dashboard
+# Implementation Tasks: Jira Sprint Dashboard Prototype
 
-- **Status**: Draft task breakdown; implementation remains gated by the decisions in this file.
-- **Source plan**: [plan.md](./plan.md)
-- **Feature specification**: [specification.md](./specification.md)
-- **Clarification review**: [clarify.md](./clarify.md)
+- **Status**: Draft; tasks cover only the approved mock-only prototype in [plan.md](./plan.md).
+- **Specification**: [specification.md](./specification.md)
 - **Constitution**: [constitution.md](./constitution.md)
+- **Plan**: [plan.md](./plan.md)
 
-## How to Use This Task List
+## Task Rules
 
-- Complete tasks only after their dependencies and applicable decision gates are satisfied.
-- Phase 1 setup may proceed in parallel with Phase 0 only for reversible work that does not access Jira, persist Jira data, or implement authorization.
-- Do not begin Jira data access, shared persistence, scheduled synchronization, or user-facing Jira data until Gate 0 is satisfied.
-- A task is complete only when all of its acceptance criteria pass and its verification evidence is recorded.
-- If an approved decision changes the scope or design, update the specification and this task list before continuing.
+- `PT` IDs identify tasks for this prototype and do not replace or unblock the specification's T0.1 identity decision.
+- Complete a task only after its dependencies are satisfied and every acceptance criterion has evidence.
+- The prototype must use invented local data only. Do not connect to Jira or an identity provider, serve dashboard data through an API, persist Jira-like records, or imply data is current.
+- An item described as deferred or unresolved is not complete and is not approved for implementation. Update this file and the specification if scope changes.
+- Keep project files under `jira-dashboard/`; do not change the root Python calculator.
 
-## Phase 0 — Requirements and Integration Decisions
+## Phase 0 — Baseline Scope and Acceptance
 
-### T0.1 — Approve user identity and Jira permission model
-
-**Depends on**: None
-
-**Acceptance criteria**:
-
-- The specification documents how dashboard users authenticate and how their trusted identity reaches the backend.
-- It specifies how project, issue-security, and relevant field visibility are enforced on each data request.
-- It states whether viewer delegation is supported and how unauthorized users are denied.
-- It explains whether scheduled refresh is compatible with viewer-specific Jira permissions; a shared service-account dataset is not assumed safe.
-- Security and Jira owners approve the model, or a documented blocking constraint is recorded.
-
-**Current disposition (2026-11-04): Blocked.** The T0.1 decision record in `specification.md` documents the blocking constraint: Jira Server/API and identity-provider capabilities are unconfirmed, no access or scheduled-refresh model is selected, and security/Jira-owner approvals are not recorded. The blocking-constraint acceptance path is documented; the identity-model criteria remain unresolved. Do not treat this as approval or proceed with Jira authorization, data access, persistence, synchronization, or user-facing Jira data. Reopen this task when the required technical facts and owner decisions are available.
-
-### T0.2 — Approve external stakeholder data policy
-
-**Depends on**: None; coordinate with T0.1 as needed.
-
-**Acceptance criteria**:
-
-- The eligible external stakeholder population is defined.
-- “Full dashboard access” is explicitly defined as feature access and the exact data/issue-detail visibility allowed.
-- Required Jira accounts/permissions or other approved access prerequisites for external users are documented.
-- The source conflict between full dashboard access and summary-only versus issue-level visibility is resolved in the specification.
-
-### T0.3 — Confirm Jira API contract and data scope
+### PT0.1 — Establish the prototype scope baseline
 
 **Depends on**: None
 
-**Acceptance criteria**:
-
-- Jira Server base URL, version, supported API version, network reachability, and required Jira/plugin capabilities are documented without committing credentials.
-- Included Jira projects/boards and configuration ownership are specified.
-- The source fields/API data for sprint identity, state, project/board association, and timeline dates are documented.
-- Historical, active, future, archived, parallel, cross-project, and removed sprint handling is specified to the extent required by the approved scope.
-- An authorized non-production Jira environment or controlled, representative API fixture is available for verification.
-
-### T0.4 — Approve metric and status semantics
-
-**Depends on**: T0.3
+**Work**: Use the confirmed G-01 through G-14 decisions recorded in the specification to bound implementation. Preserve the mock-only boundary and distinguish future requirements from prototype acceptance.
 
 **Acceptance criteria**:
 
-- Jira statuses are mapped to To Do, In Progress, Done, and (if in scope) Blocked, with an explicit rule for unmapped statuses.
-- The issue population for totals is defined, including sub-tasks, multi-sprint issues, removed issues, and cross-project issues where applicable.
-- Completion is defined, including how Done category and Jira resolution interact.
-- Per-sprint and multi-sprint aggregation, filter effects, zero-issue behavior, and percentage precision are specified.
-- Story points remain excluded from the count-based formula unless separately approved and specified.
+- The specification records each confirmed G-01 through G-14 disposition and the plan/task list do not contradict those decisions.
+- T0.1 remains blocked; no Jira-owner or security-owner approval is asserted.
+- No live Jira, real user-data access, external-user access, Jira data persistence, API-backed dashboard data, interactive filters, completion percentage, timeline, or refresh is treated as prototype work.
+- Unanswered review items are listed as unresolved or deferred, not silently decided.
 
-### T0.5 — Approve refresh and stale-data behavior
+### PT0.2 — Define the minimal synthetic fixture contract
 
-**Depends on**: T0.1, T0.3
+**Depends on**: PT0.1
 
-**Acceptance criteria**:
-
-- The specification defines what happens on initial load and user-triggered refresh, including whether cached data may render while a refresh runs.
-- Successful, failed, and partial refreshes have explicit definitions and user-visible outcomes; stale data cannot be represented as current.
-- The scheduled refresh time zone/window, missed-run recovery, retries, overlapping-run behavior, and outage handling are specified.
-- The schedule and any persisted refresh state are compatible with the approved viewer-permission model.
-
-### T0.6 — Confirm feature boundary and blocked-work scope
-
-**Depends on**: None
+**Work**: Specify the smallest deterministic, invented fixture needed to demonstrate the approved status mapping without asserting Jira completeness or issue-presentation requirements.
 
 **Acceptance criteria**:
 
-- The product owner confirms this task breakdown covers the Jira sprint dashboard only.
-- Blocked work is either given a source, mapping, and acceptance behavior or explicitly excluded from the initial feature.
-- Any Confluence automation is recorded as a separate feature specification and plan, not silently added here.
-- The responsible team lead and the mechanism for reviewing configuration changes through Jira governance are identified, or recorded as a release-blocking decision.
+- The fixture contract includes To Do, In Progress, Done, and an unmapped status case.
+- Every fixture value is invented; it contains no copied Jira records, real people, credentials, or sensitive data.
+- Mapping an unmapped status never classifies it as Done.
+- The fixture is explicitly not a representative or complete Jira project/sprint dataset.
+- The contract does not define issue identifiers, links, sorting, issue-list behavior, or additional metrics while G-16 and related presentation decisions remain unresolved.
 
-### T0.7 — Finalize implementation-ready specification
+### PT0.3 — Record remaining prototype gates and deferrals
 
-**Depends on**: T0.1–T0.6
+**Depends on**: PT0.1
 
-**Acceptance criteria**:
-
-- `spec/specification.md` contains approved answers for the P0 findings C-01–C-03 and G-01–G-06, G-10, or explicitly accepted out-of-scope decisions.
-- Requirements and success criteria affected by decisions are updated and remain consistent with `spec/constitution.md`.
-- Each in-scope user story and success criterion has a repeatable verification method.
-- No unresolved P0 item blocks building the authorized Jira read boundary.
-
-**Milestone M0**: T0.7 is accepted; later phases may still be gated on remaining persistence, UX, governance, and deployment decisions.
-
-## Phase 1 — Application Foundation
-
-### T1.1 — Select compatible toolchain versions
-
-**Depends on**: None; implementation must comply with the constitution stack constraints.
+**Work**: Reconcile the unresolved findings in [clarify.md](./clarify.md) with the prototype plan without inventing user decisions.
 
 **Acceptance criteria**:
 
-- Compatible Node.js, Express, Vite, test, lint, formatting, and migration tool versions are selected and documented.
-- React 18 and PostgreSQL 15 remain the mandated versions; no constitution change is assumed.
-- The intended scope for Docker/PostgreSQL (development and/or deployment) is stated for the environments being configured.
+- G-15 through G-23 are each classified as resolved, deferred, or blocking with the basis documented.
+- G-16 is a gate for any issue-level presentation; if still unresolved, prototype UI work excludes issue lists and issue navigation.
+- Toolchain versions required by the constitution are selected and documented before application bootstrap.
+- Configuration governance, field/data policy, accessibility/browser targets, deployment, and release-evidence ownership are not treated as approved without a recorded decision.
 
-### T1.2 — Bootstrap isolated frontend and backend projects
+### PT0.4 — Align the task analysis with the prototype plan
 
-**Depends on**: T1.1
+**Depends on**: PT0.1, PT0.3
 
-**Acceptance criteria**:
-
-- Frontend and backend project manifests exist under `jira-dashboard/frontend/` and `jira-dashboard/backend/`.
-- The frontend is configured for React 18 and Vite; the backend is configured for Node.js and Express.
-- The root Python calculator files and behavior are unchanged.
-- No Jira calls, real credentials, Jira-backed UI, or shared Jira-data cache are added before T0.7.
-
-### T1.3 — Add repeatable development and quality commands
-
-**Depends on**: T1.2
+**Work**: Update [analyze.md](./analyze.md) so its assessments describe the current prototype tasks and deferred production work rather than the superseded live-Jira task list.
 
 **Acceptance criteria**:
 
-- Documented commands exist for installing dependencies, running frontend/backend tests, linting/formatting, and building both applications.
-- The commands run from a clean checkout using the documented toolchain.
-- A failing test, lint, or build exits unsuccessfully rather than reporting success.
+- Every actionable `PT` task has a corresponding complexity, dependency, and risk assessment.
+- The analysis distinguishes prototype tasks from blocked or deferred production work.
+- No live Jira, authentication, synchronization, Jira-data persistence, or refresh task is presented as ready under the current plan.
+- Task IDs and dependencies in the analysis resolve against this file.
 
-### T1.4 — Configure local PostgreSQL 15 with Docker
+**Milestone M0 — Scope baseline ready**: PT0.1–PT0.4 meet their acceptance criteria; no live Jira or real-user work is authorized.
 
-**Depends on**: T1.1
+## Phase 1 — Reproducible Application Foundation
+
+### PT1.1 — Bootstrap the isolated frontend and backend
+
+**Depends on**: M0, PT0.3
+
+**Work**: Create the React 18/Vite frontend and Node.js/Express backend within the constitution's `jira-dashboard/` structure.
+
+**Acceptance criteria**:
+
+- Frontend and backend manifests, lockfiles, and source roots are under `jira-dashboard/frontend/` and `jira-dashboard/backend/`.
+- The chosen compatible versions and runtime requirements are documented and pinned according to repository conventions.
+- The frontend uses React 18 and Vite; the backend uses Node.js and Express.
+- No Jira adapter, identity integration, dashboard-data API, Jira credentials, or Jira calls are introduced.
+- Root calculator files and behavior are unchanged.
+
+### PT1.2 — Configure PostgreSQL 15 for local development
+
+**Depends on**: PT1.1, PT0.3
+
+**Work**: Add Docker configuration and safe local settings for the constitution-required PostgreSQL service.
 
 **Acceptance criteria**:
 
 - The documented Docker configuration starts PostgreSQL 15 in the approved development environment.
-- Database credentials are supplied through local environment configuration; committed examples contain placeholders only.
-- Startup/readiness and shutdown can be verified without requiring a Jira connection.
+- Readiness and shutdown can be verified without a Jira connection.
+- Credentials are provided through local configuration; committed examples contain placeholders only.
+- No Jira sprint or issue tables, fixture persistence, or Jira-data cache are created.
 
-### T1.5 — Establish backend runtime and migration foundation
+### PT1.3 — Establish backend runtime and migration foundations
 
-**Depends on**: T1.2, T1.4
+**Depends on**: PT1.1, PT1.2
 
-**Acceptance criteria**:
-
-- Backend startup validates required environment configuration and reports invalid/missing values explicitly.
-- Health/readiness behavior distinguishes an unavailable required database from a healthy service.
-- The selected migration tool can apply a versioned migration to a clean PostgreSQL 15 database.
-- No Jira-specific schema or data is added before the persistence decision gate in Phase 3.
-
-### T1.6 — Document local setup and secret handling
-
-**Depends on**: T1.2–T1.5
+**Work**: Add configuration validation, health/readiness behavior, and a versioned migration workflow without creating Jira data features.
 
 **Acceptance criteria**:
 
-- Setup instructions document prerequisites, frontend/backend startup, database startup, tests, and builds.
-- Environment variable names and placeholder examples are documented without real credentials.
-- A clean-checkout setup walkthrough succeeds.
+- Missing or invalid required configuration is reported explicitly.
+- Health/readiness distinguishes an unavailable required database from a ready backend.
+- A versioned migration can be applied and verified against a clean PostgreSQL 15 database.
+- No route serves dashboard fixture data, and no Jira-specific schema or data is present.
 
-**Milestone M1**: T1.1–T1.6 are accepted; the isolated project can be built and tested locally without Jira access.
+### PT1.4 — Add repeatable development and quality commands
 
-## Phase 2 — Domain Model, Jira Adapter, and Authorization Boundary
+**Depends on**: PT1.1
 
-**Entry gate**: M0 and M1 accepted.
-
-### T2.1 — Define validated application-owned domain models
-
-**Depends on**: T0.7, T1.2
+**Work**: Configure the selected test, lint, formatting, and build tools for the frontend and backend.
 
 **Acceptance criteria**:
 
-- Models cover configured Jira scope, sprint, issue, status mapping, filter selection, and refresh result using confirmed source fields.
-- Invalid or unmapped provider values produce explicit validation results and cannot silently become Done or fresh success.
-- Unit tests cover valid and invalid representative values.
+- Documented commands exist for frontend/backend tests, linting, formatting checks, and builds.
+- Commands run with the pinned toolchain from a clean checkout.
+- A failing test, lint, format check, or build exits unsuccessfully.
 
-### T2.2 — Implement viewer identity and authorization boundary
+### PT1.5 — Document local setup and safe configuration
 
-**Depends on**: T0.1, T0.2, T2.1
+**Depends on**: PT1.2, PT1.3, PT1.4
 
-**Acceptance criteria**:
-
-- The backend establishes viewer identity using the approved mechanism and rejects unauthenticated or unauthorized requests.
-- Jira visibility is applied per viewer as specified; the browser cannot select or impersonate another viewer.
-- Tests demonstrate that data visible to one test identity is not returned to a less-privileged identity.
-- The implementation does not introduce an unapproved application role model.
-
-### T2.3 — Implement the server-side Jira adapter
-
-**Depends on**: T0.3, T2.1, T2.2
+**Work**: Document prerequisites and the local development workflow.
 
 **Acceptance criteria**:
 
-- Jira requests use the confirmed API version and server-side credentials/identity flow.
-- Provider calls are isolated behind the backend integration boundary and return application-owned models.
-- Jira credentials are absent from frontend bundles, source control, and logs.
-- Adapter contract tests use controlled responses and do not require live Jira by default.
+- Setup instructions cover frontend/backend startup, PostgreSQL startup, tests, and builds.
+- Environment variable names and safe placeholders are documented; no real credentials are included.
+- A clean-checkout setup walkthrough succeeds without Jira access.
 
-### T2.4 — Implement complete sprint and issue retrieval
+**Milestone M1 — Clean local baseline**: PT1.1–PT1.5 are accepted; the isolated app and PostgreSQL can be run and checked locally without Jira.
 
-**Depends on**: T0.3, T2.3
+## Phase 2 — Synthetic Fixture and Status Mapping
 
-**Acceptance criteria**:
+### PT2.1 — Add deterministic local mock data
 
-- Sprint and issue queries follow the confirmed project/board scope and include required past/current/future records.
-- Pagination is followed until completion; tests detect truncated or repeated pages.
-- Required status, assignee, due date, priority, issue type, project, sprint, and timeline fields are mapped as approved.
-- Missing optional fields remain missing and are not fabricated.
+**Depends on**: M1, PT0.2
 
-### T2.5 — Implement explicit provider failure behavior
-
-**Depends on**: T0.5, T0.3, T2.3
+**Work**: Implement the approved synthetic fixture at the frontend/demo-data boundary.
 
 **Acceptance criteria**:
 
-- Timeout, rate-limit, authorization, transient, permanent, and partial-result cases are classified according to the approved integration contract.
-- Any retry behavior is bounded and limited to approved retryable failures.
-- Incomplete pagination or partial retrieval is surfaced as incomplete and cannot be mistaken for a complete successful result.
-- Logs/errors omit credentials and sensitive Jira content.
+- The fixture matches the approved contract and is deterministic across test runs.
+- The fixture is local and is not fetched from Express, Jira, or another network service.
+- The fixture is not written to PostgreSQL.
+- Documentation and fixture naming identify it as synthetic; no completeness or representativeness claim is made.
 
-### T2.6 — Verify Jira adapter and authorization contracts
+### PT2.2 — Implement and test fixture status mapping
 
-**Depends on**: T2.2–T2.5
+**Depends on**: PT2.1
 
-**Acceptance criteria**:
-
-- Automated tests cover normalization, pagination completeness, status mapping, unavailable fields, API errors, and permission-denied data.
-- Cross-viewer tests cover at least one issue visible to one identity but not another.
-- Tests pass with controlled responses; any live Jira test is explicitly authorized and isolated.
-
-**Milestone M2**: Backend Jira reads are complete, normalized, server-side, and permission-safe under the approved access design.
-
-## Phase 3 — Persistence and Refresh Pipeline
-
-**Entry gate**: M2 accepted; persistence, cache isolation, retention/deletion, and scheduler behavior from the phase-specific decisions in `spec/plan.md` are approved.
-
-### T3.1 — Define the approved persistence model
-
-**Depends on**: M0, T2.1
+**Work**: Map fixture statuses directly to To Do, In Progress, and Done, with explicit unmapped handling.
 
 **Acceptance criteria**:
 
-- The specification states what PostgreSQL stores and why, including whether Jira issues/sprints are persisted.
-- The data model identifies source keys, viewer/access partitioning if needed, refresh metadata, and deletion/retention behavior.
-- Security review confirms stored data and query paths cannot widen a viewer's Jira visibility.
+- Tests verify each approved category maps to itself.
+- An unmapped status remains explicitly unmapped and cannot be treated as Done.
+- Blocked is not a separate category unless explicitly present in approved fixture data.
+- No completion percentage or additional summary metric is calculated.
 
-### T3.2 — Create versioned PostgreSQL migrations
+**Milestone M2 — Safe deterministic demo data**: PT2.1 and PT2.2 pass, and fixture provenance and limits are documented.
 
-**Depends on**: T3.1, T1.5
+## Phase 3 — Minimal Local Prototype Presentation
 
-**Acceptance criteria**:
+### PT3.1 — Render the approved local fixture
 
-- Migrations create the approved schema from an empty PostgreSQL 15 database and can be verified after application.
-- Migration status is versioned and reviewable; no manual undocumented schema step is required.
-- Migration tests cover clean initialization and the repository's supported upgrade path.
+**Depends on**: M2
 
-### T3.3 — Implement permission-safe persistence and cleanup
-
-**Depends on**: T2.2, T3.1, T3.2
+**Work**: Build a minimal, read-only React presentation of only the approved non-issue-level fixture information.
 
 **Acceptance criteria**:
 
-- Reads/writes enforce the approved data-isolation policy for every viewer and scheduled process.
-- Retention and deletion rules are implemented for removed/out-of-scope Jira records and revoked access as approved.
-- Tests prove that rows from one permission scope cannot be queried by another.
+- The frontend renders data sourced only from the local synthetic fixture.
+- A visible notice identifies the data as mock/synthetic and not current Jira data.
+- The prototype does not imply live connectivity, user-specific visibility, production readiness, or refresh recency.
+- No issue list, issue links, timeline, completion percentage, additional metrics, interactive filters, refresh control, or Jira navigation is present.
+- If an issue-level presentation is later requested, work stops until G-16 is resolved and the specification is updated.
 
-### T3.4 — Implement idempotent synchronization
+### PT3.2 — Verify the mock-only presentation behavior
 
-**Depends on**: T2.4–T2.5, T3.3
+**Depends on**: PT3.1
 
-**Acceptance criteria**:
-
-- Replaying the same complete source result does not create duplicates or unintended changes.
-- A failed or partial fetch cannot replace a known-good result as if the refresh completed successfully.
-- Source identifiers and approved mappings are preserved.
-- Tests cover repeat runs, partial pages, transaction failure, and recovery.
-
-### T3.5 — Implement independent scheduled refresh
-
-**Depends on**: T0.5, T3.4
+**Work**: Add focused frontend tests for the fixture rendering and prototype boundary.
 
 **Acceptance criteria**:
 
-- The scheduler runs independently of dashboard sessions and meets the approved daily cadence/time zone.
-- Overlapping runs, restart, missed runs, retry policy, and outage handling match the approved specification.
-- Scheduled access does not bypass or weaken viewer-specific permission handling.
-- Scheduler tests demonstrate the required cadence behavior and failure/recovery outcomes.
+- Tests verify the synthetic-data notice is rendered.
+- Tests verify only approved fixture values/categories are shown and no issue-level or deferred controls appear.
+- Tests do not call a live service or depend on a dashboard-data API.
+- Frontend tests and production build pass.
 
-### T3.6 — Implement user-triggered refresh and refresh status
+**Milestone M3 — Mock-only demonstrator**: The app renders approved local fixture data without implying live Jira or unresolved product behavior.
 
-**Depends on**: T0.5, T3.4
+## Phase 4 — Verification and Prototype Handoff
 
-**Acceptance criteria**:
+### PT4.1 — Run clean-environment project checks
 
-- An authorized user can request a refresh through the approved backend flow.
-- The result distinguishes success, failure, and partial completion and reports the last successful refresh accurately.
-- Concurrent user and scheduled triggers follow the approved overlap policy.
-- Tests verify that stale data is never labelled current after a failed or partial refresh.
+**Depends on**: M3, PT1.5
 
-**Milestone M3**: Persistence and daily/on-demand refresh satisfy approved isolation, idempotency, completeness, and failure semantics.
-
-## Phase 4 — Dashboard API and Calculations
-
-**Entry gate**: M3 accepted; filter, aggregation, issue-inclusion, status, and API error semantics are approved.
-
-### T4.0 — Resolve dashboard interaction and presentation requirements
-
-**Depends on**: M0; may be decided while Phases 1–3 are in progress.
+**Work**: Run all applicable tests, static checks, builds, and database startup/migration checks from a clean setup.
 
 **Acceptance criteria**:
 
-- Filter cardinality, combination, reset behavior, option population, and effect on every displayed metric are specified.
-- Required summary metrics and their formulas/empty-data behavior are enumerated, or the specification limits the promise to already-defined metrics.
-- Timeline date range, ordering, overlap, missing dates, timezone, state, and interaction behavior are specified.
-- Issue identification and display decisions include required identifiers/title/link, sorting, and large-result handling.
-- Supported browsers/viewports and accessibility expectations are specified.
-- Loading, first-run, not-configured, empty, stale, partial-refresh, unauthorized, and provider-error states are specified.
-- The decisions are reflected in `spec/specification.md` and acceptance scenarios are testable.
+- Frontend/backend tests, lint/format checks, and production builds pass, or unavailable checks are explicitly reported.
+- PostgreSQL 15 starts through Docker and its migration workflow succeeds on a clean database.
+- Setup does not depend on undocumented local state or committed secrets.
 
-### T4.1 — Define and document dashboard API contracts
+### PT4.2 — Verify prototype exclusion boundaries
 
-**Depends on**: T4.0, M2
+**Depends on**: M3, PT4.1
+
+**Work**: Inspect the source, configuration, routes, database schema, and runtime behavior for prohibited prototype features.
 
 **Acceptance criteria**:
 
-- Request/response schemas cover authorized scope, filter choices, sprint summaries, timeline, issue details, and refresh status as required.
-- Error responses distinguish validation, authorization, provider, persistence, and partial-data failures.
-- API documentation agrees with the implemented schemas.
+- No live Jira or identity-provider call, Jira endpoint, Jira credential, or dashboard-data API endpoint exists.
+- No Jira sprint/issue records are persisted, and no scheduled refresh job is present.
+- No UI claims Jira permission parity, external-user approval, data completeness, or currentness.
+- Any violation blocks prototype acceptance until removed and rechecked.
 
-### T4.2 — Implement authorized dashboard read endpoints
+### PT4.3 — Prepare prototype evidence and handoff documentation
 
-**Depends on**: T2.2, T3.3, T4.1
+**Depends on**: PT4.1, PT4.2
 
-**Acceptance criteria**:
-
-- Each endpoint validates input and applies viewer visibility before returning data.
-- Unknown or unauthorized scopes are explicitly rejected or returned as the approved empty result; unrelated data is never substituted.
-- Route tests cover authorized, unauthenticated, unauthorized, malformed, and provider/database failure cases.
-
-### T4.3 — Implement status grouping and completion metrics
-
-**Depends on**: T0.4, T2.1, T4.0–T4.1
+**Work**: Record what was tested, what the prototype demonstrates, and which product requirements remain deferred or blocked.
 
 **Acceptance criteria**:
 
-- Metrics use the approved status mapping, issue population, and per-sprint/multi-sprint rules.
-- Completion equals the approved completed issue count divided by total included issue count, with the approved display precision.
-- Zero-issue scopes are not applicable; unmapped statuses follow their explicit rule.
-- Unit tests cover boundary counts, empty sprints, filters, and multi-sprint aggregation.
+- The evidence matrix distinguishes prototype checks from deferred FRs/SCs; deferred criteria are not marked passed.
+- Local startup instructions, fixture boundaries, known omissions, and T0.1's blocked status are documented.
+- Remaining unresolved decisions have clear labels; no owner approval is inferred.
 
-### T4.4 — Implement filters consistently across results
+**Milestone M4 — Prototype accepted**: Applicable checks pass, mock-only boundaries are verified, and deferred product requirements remain explicit.
 
-**Depends on**: T0.4, T4.0–T4.3
+## Deferred or Blocked Work — Not Prototype Tasks
 
-**Acceptance criteria**:
+These items are not actionable under this task breakdown. They require a later user decision, a revised specification/plan, and where applicable required owner approval.
 
-- Sprint, project, assignee, and issue-type filters implement the approved selection cardinality and combination semantics.
-- The same selected scope applies to issue lists, filter-dependent summaries, status distributions, and completion values.
-- A selection matching no issues returns an explicit empty result without unrelated issues or misleading metrics.
-- Tests cover every filter independently and the approved combinations.
-
-### T4.5 — Verify API/data contract against fixtures
-
-**Depends on**: T4.2–T4.4
-
-**Acceptance criteria**:
-
-- Controlled fixtures verify response schemas, permission filtering, required fields, metrics, and filter results.
-- Expected and actual issue/sprint counts match the fixture's known complete source set.
-- Tests pass without depending on live Jira.
-
-**Milestone M4**: The frontend can consume stable, authorized API responses whose filters and metrics are verified.
-
-## Phase 5 — React Dashboard Experience
-
-**Entry gate**: M4 accepted; timeline, summary metrics, issue identification, external-user experience, browser/accessibility, and loading/error decisions are approved.
-
-### T5.1 — Implement dashboard layout and sprint summaries
-
-**Depends on**: M4 and approved UX decisions
-
-**Acceptance criteria**:
-
-- The React 18 dashboard presents the approved sprint summary metrics, timeline, status distribution, and completion value.
-- Historical, active, and future sprints appear according to the confirmed default scope.
-- The layout responds to the approved viewport/browser requirements.
-
-### T5.2 — Implement issue details and filter controls
-
-**Depends on**: T5.1, T4.4
-
-**Acceptance criteria**:
-
-- Available status, assignee, due date, and priority are displayed without invented values.
-- Required filters expose available options and follow the approved selection/combination behavior.
-- Issue identification, sorting, linking, and large-result handling follow the approved UX requirements.
-- No Jira issue mutation or administrative controls are exposed.
-
-### T5.3 — Implement load, refresh, and failure states
-
-**Depends on**: T3.6, T4.2, T5.1
-
-**Acceptance criteria**:
-
-- Opening the dashboard and manual refresh trigger the approved backend refresh flow.
-- Loading, first-run/no-data, empty-filter, stale-data, partial-refresh, unauthorized, and provider-error states are distinguishable.
-- Failed or partial refresh data is never described as current or successful.
-- Frontend tests cover success and each approved failure/state transition.
-
-### T5.4 — Verify access and accessibility behavior
-
-**Depends on**: T0.1, T0.2, T5.1–T5.3
-
-**Acceptance criteria**:
-
-- Authorized external users receive the approved functionality and data scope.
-- UI behavior does not allow access beyond backend-enforced Jira permissions.
-- Filters and data displays satisfy the approved keyboard, screen-reader, and non-color status requirements.
-- Automated or documented checks cover the agreed browser and viewport matrix.
-
-### T5.5 — Add frontend component and integration tests
-
-**Depends on**: T5.1–T5.4
-
-**Acceptance criteria**:
-
-- Tests cover summary rendering, timeline data, issue fields, filter changes, refresh requests, and failure/empty states.
-- Tests verify metric display matches API data and do not rely on a live Jira service.
-- Frontend build and test commands pass from a clean checkout.
-
-**Milestone M5**: All in-scope user stories are demonstrable against controlled data with consistent filters, metrics, and access behavior.
-
-## Phase 6 — End-to-End Verification and Release Readiness
-
-**Entry gate**: M5 accepted; release decisions, deployment target, and governance responsibilities are documented.
-
-### T6.0 — Confirm deployment and operational readiness contract
-
-**Depends on**: M0; final verification may occur during Phase 6.
-
-**Acceptance criteria**:
-
-- The deployment target and required network paths to Jira Server and PostgreSQL are documented.
-- The production/runtime environment for the independent scheduler is identified.
-- Approved backup, retention, recovery, support, and operational ownership expectations are documented.
-- Deployment decisions do not conflict with the approved viewer-permission model or constitution.
-
-### T6.1 — Run clean-environment build and database verification
-
-**Depends on**: M1, M3, M5
-
-**Acceptance criteria**:
-
-- Frontend/backend builds, static checks, and automated suites pass from a clean checkout.
-- PostgreSQL 15 starts through the approved Docker setup and migrations succeed on a clean database.
-- Setup does not depend on undocumented local state or real committed secrets.
-
-### T6.2 — Run end-to-end feature acceptance tests
-
-**Depends on**: T6.1
-
-**Acceptance criteria**:
-
-- Tests cover historical/current/future sprint display, every required filter, status mapping, fields, empty sprints, refresh, and error recovery.
-- Displayed sprint and issue counts match a known complete fixture, including paginated source results.
-- FR-001–FR-019 and SC-001–SC-009 are traced to test evidence or an explicitly approved deferral.
-
-### T6.3 — Run authorized Jira integration validation
-
-**Depends on**: T0.3, T2.6, T6.2
-
-**Acceptance criteria**:
-
-- Authorized integration tests pass against the confirmed Jira Server/API version and configured project scope.
-- Returned historical, active, and future sprint data is compared with a known Jira source-of-truth count.
-- Provider access, pagination, mappings, and network behavior match the approved contract.
-
-### T6.4 — Run security and permission-isolation checks
-
-**Depends on**: T2.6, T3.3, T4.2, T5.4
-
-**Acceptance criteria**:
-
-- Tests cover unauthenticated access, cross-viewer data leakage, external-stakeholder policy, input validation, and error disclosure.
-- A build/log review finds no Jira credentials in the client bundle, source-controlled files, or logs.
-- Any discovered permission leak blocks release until corrected and re-tested.
-
-### T6.5 — Verify scheduler and recovery operations
-
-**Depends on**: T3.5, T3.6
-
-**Acceptance criteria**:
-
-- The scheduler operates with no dashboard session and satisfies the approved cadence.
-- Restart, downtime, missed run, Jira outage, duplicate trigger, partial pagination, and recovery cases are exercised.
-- Refresh status remains truthful; stale or partial data is not represented as fresh successful data.
-
-### T6.6 — Complete operational and governance readiness
-
-**Depends on**: T0.6, T6.0–T6.5
-
-**Acceptance criteria**:
-
-- Team-lead ownership and configuration review through the approved Jira governance process are documented and demonstrated.
-- Deployment connectivity, environment setup, approved backup/retention behavior, and support/recovery instructions are verified.
-- Remaining limitations have an explicit owner and approval; no open acceptance-critical issue is hidden.
-
-**Milestone M6**: Release candidate meets all approved acceptance criteria, permission tests pass, and deployment/operations are verified.
-
-## Requirement Traceability
-
-| Requirements | Task coverage |
+| Item | Disposition |
 |---|---|
-| FR-001–FR-003 | T1.1–T1.6, T2.2–T2.3 |
-| FR-004–FR-010 | T0.3–T0.4, T2.1–T2.6, T4.3–T5.2 |
-| FR-011–FR-014 | T0.5, T3.1–T3.6, T5.3, T6.5 |
-| FR-015–FR-016 | T0.1–T0.2, T2.2, T3.3, T5.4, T6.4 |
-| FR-017 | T0.6, T1.6, T6.6 |
-| FR-018–FR-019 | T2.3, T2.6, T4.2, T5.2, T6.4 |
-| SC-001–SC-004 | T2.4, T4.3–T4.5, T5.1–T5.2, T6.2–T6.3 |
-| SC-005–SC-007 | T0.5, T3.5–T3.6, T5.3, T6.5 |
-| SC-008–SC-009 | T0.1–T0.3, T6.3–T6.4 |
+| T0.1 identity, Jira permission enforcement, live Jira access, and real-user data | **Blocked**. Remains blocked until technical validation and explicit Jira/security-owner approval are documented. |
+| G-02 external stakeholder policy and real external access | Out of scope for this prototype; no population or data permission is approved. |
+| G-03/G-04 live Jira API, project/board/sprint discovery, and source-of-truth completeness | Out of scope for this prototype. |
+| G-06 completion percentage and issue-population edge cases | Deferred; no completion metric acceptance behavior in this prototype. |
+| G-07 dashboard data API and live provider behavior | Out of scope; local fixture only. |
+| G-09 Jira data persistence, isolation, retention, and deletion | Out of scope for this prototype; do not persist Jira-like records. |
+| G-11/G-12 timeline and interactive filters | Out of scope for this prototype. |
+| G-13/G-14 manual/live and scheduled refresh | Out of scope; criteria are deferred, not passed. |
+| G-15 provider pagination, rate limits, retries, timeouts, and partial-result behavior | Not exercised without a Jira provider; define before any future Jira integration. |
+| G-16 issue identification, details, links, sorting, and large-result behavior | Unresolved gate for any issue-level UI; no issue list in this prototype. |
+| G-17 configuration governance, G-19 field/data handling, G-20 screen states, G-21 browser/accessibility, G-22 fixture provenance/counts, G-23 evidence owners | Unresolved or deferred; do not infer decisions from the prototype scope. |
+| Production deployment, live integration, authorization, synchronization, or broader product release | Requires a separately approved plan revision and satisfaction of the future production gate in [plan.md](./plan.md). |

@@ -12,9 +12,35 @@ Build a separate, read-only web application for team members, project stakeholde
 
 This specification covers only the Jira sprint dashboard described in `project_spec.md`; it does not define Confluence automation. The product is not implementation-ready until the blocking access, Jira contract, and metric decisions below are resolved or explicitly accepted out of scope.
 
+## Prototype Scope Decisions
+
+The following decisions were confirmed by the product owner during the clarification review. They limit the prototype only; they do not remove the corresponding capabilities from the future product vision unless explicitly stated.
+
+| Review item | Confirmed prototype decision |
+|---|---|
+| G-01 — Identity and Jira permission enforcement | Use controlled mock Jira fixtures only. Do not implement live Jira access, real user-data access, or an identity/authorization model. T0.1 remains blocked; no Jira or security-owner approval is implied. |
+| G-02 — External stakeholders | Real external-user access is out of scope. No external-user population or issue-visibility permission is approved. |
+| G-03 — Jira Server/API contract | Live Jira integration is out of scope; the prototype must not connect to a real Jira instance. |
+| G-04 — Project, board, and sprint discovery | Live scope discovery and source-of-truth completeness acceptance are out of scope. Synthetic sample data may be used, but no representative fixture contents have been approved. |
+| G-05 — Status mapping | For fixture data, map statuses directly to To Do, In Progress, or Done. Never treat an unmapped status as Done. Do not represent blocked as a separate category unless it is explicitly present in fixture data. |
+| G-06 — Issue population and completion semantics | Completion-metric edge cases are deferred. A completion percentage is not a prototype acceptance behavior; the simple formula remains a future requirement unless its scope is later defined. |
+| G-07 — API contract | API-backed dashboard data flow is out of scope. Do not implement Jira or identity API endpoints; any prototype data must be local mock data. |
+| G-08 — Screen-level UI requirements | Screen/layout acceptance criteria are out of scope. This does not approve a production dashboard design. |
+| G-09 — PostgreSQL data model and retention | Do not persist Jira sprint or issue records. PostgreSQL 15 remains binding for any application data that is in scope, in accordance with the constitution. |
+| G-10 — Additional summary metrics | No additional sprint-summary metrics are required for the prototype. This does not restore the deferred completion percentage. |
+| G-11 — Sprint timeline | Timeline display and behavior are out of scope. |
+| G-12 — Interactive filters | Interactive sprint, project, assignee, and issue-type filters are out of scope for the prototype. |
+| G-13 — Initial load and manual refresh | Refresh behavior is out of scope: no refresh controls, live refresh, or claim that prototype data is current. |
+| G-14 — Scheduled refresh | Scheduled refresh is out of scope. FR-012 and SC-005 are deferred, not satisfied by the prototype. |
+
+These decisions do not resolve the remaining findings in `spec/clarify.md`. In particular, issue identification/presentation, configuration governance, the exact toolchain versions, accessibility/browser targets, release-evidence ownership, and production Jira integration remain undecided or deferred. Do not infer approval for those items from this prototype scope record.
+
 ## Scope and Constraints
 
 - The application is a separate web application under `jira-dashboard/`; it must not be mixed into the repository's Python calculator.
+- The prototype is mock-only and must not access, expose, or persist real Jira data.
+- Prototype data is local and synthetic; it is not served through a dashboard API and must not be represented as current Jira data.
+- Prototype exclusions and future product requirements are distinguished in the decision record above. A deferred requirement is not an accepted implementation or acceptance criterion for this prototype.
 - The initial product is read-only with respect to Jira issues. It does not create, edit, transition, or administer Jira issues.
 - The application reads Jira data through the confirmed Jira Server API. Jira calls and privileged credentials remain on the Express backend.
 - “All sprints” means the complete set discoverable through the confirmed API for the approved project/board scope, including historical, active, and future sprints, verified against a known source of truth. It does not mean every sprint on the Jira instance.
