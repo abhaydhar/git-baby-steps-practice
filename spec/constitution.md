@@ -2,6 +2,51 @@
 
 This constitution defines the non-negotiable principles for the Jira/Confluence automation project. Product specifications and implementation plans must comply with it. A proposed exception requires an explicit, documented amendment before implementation.
 
+## Project Context
+
+### Project Purpose and Users
+
+- The initial product defined by `spec/specification.md` is the **Jira Sprint Dashboard**: a separate, read-only web application for reviewing sprint progress, delivery status, and issue details available under the approved Jira visibility policy.
+- Its intended users are team members, project stakeholders, and external stakeholders authorized under the organization's approved policy. This audience statement does not itself grant access or resolve the external-user data policy.
+- Confluence automation is part of the broader project context but is not included in the Jira Sprint Dashboard feature. It requires its own approved specification and plan.
+
+### Application Structure
+
+- Keep the dashboard isolated under `jira-dashboard/`; do not mix it into the root Python calculator.
+- Use the following layout as the default organization. Add folders only when an approved feature needs them.
+
+```text
+jira-dashboard/
+  frontend/
+    public/
+    src/
+      components/     # Shared presentation components
+      features/       # Feature-specific UI and state
+      services/       # Backend API clients; no privileged Jira calls
+  backend/
+    src/
+      jobs/           # Scheduled and background work
+      middleware/     # Shared request processing and policy enforcement
+      routes/         # HTTP route definitions and input validation
+      services/       # Domain services and provider adapters
+    migrations/       # Versioned database migrations
+    tests/            # Backend unit, integration, and contract tests
+  docs/               # Dashboard setup and technical documentation
+```
+
+- Keep frontend and backend manifests, lockfiles, and runtime configuration in their respective application roots. Keep secrets out of source control; `.env.example` contains names and safe placeholders only.
+- Frontend feature code belongs in `src/features`; reusable UI belongs in `src/components`; browser-side services communicate only with the Express API.
+- Backend routes delegate business and provider work to `src/services`. Jira-specific code stays behind a backend service/adapter boundary. Background jobs belong in `src/jobs`, and migrations must be versioned under `backend/migrations`.
+- Place tests beside their owning project and organize them by the behavior or module under test. Tests for Jira behavior use controlled responses unless an authorized live integration test is explicitly required.
+
+### Coding and Naming Standards
+
+- Use `camelCase` for JavaScript variables and functions, `PascalCase` for React components and classes, and `useCamelCase` names for React hooks.
+- Name React component files with `PascalCase.jsx`; name frontend hooks and JavaScript helpers/services with `camelCase.js`. Name backend route, middleware, service, job, and test files with descriptive `kebab-case.js` names; test files use the `.test.js` suffix.
+- Keep each module focused on one feature or responsibility. Prefer feature-local UI/state over putting feature-specific code in shared component folders.
+- Keep HTTP concerns in routes, shared request concerns in middleware, domain/provider behavior in services, and scheduled work in jobs. Do not duplicate provider-specific response parsing across routes or UI components.
+- Follow the repository's configured formatter and linter once established. T1.1/T1.3 must select and document those tools; do not introduce conflicting formatting conventions in individual modules.
+
 ## Core Principles
 
 ### 1. The Approved Technology Stack Is Binding
@@ -9,6 +54,7 @@ This constitution defines the non-negotiable principles for the Jira/Confluence 
 - The frontend MUST use React 18 and Vite.
 - The backend MUST use Node.js and Express.
 - PostgreSQL 15 MUST be the relational database and MUST be run through Docker as specified by the project.
+- React and React DOM MUST remain on major version 18; PostgreSQL MUST remain on major version 15. T1.1 MUST select compatible, supported Node.js, Express, Vite, Docker Engine, and Docker Compose versions before bootstrap. Record exact runtime/tool versions and pin application dependencies through manifests, lockfiles, and documented runtime configuration; do not treat an unselected version as approved.
 - A change to a required technology or major version MUST be documented and approved through a constitution amendment; it MUST NOT be introduced as an incidental implementation choice.
 
 ### 2. Integrations Have Clear Boundaries

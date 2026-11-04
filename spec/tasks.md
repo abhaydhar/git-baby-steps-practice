@@ -28,6 +28,8 @@
 - It explains whether scheduled refresh is compatible with viewer-specific Jira permissions; a shared service-account dataset is not assumed safe.
 - Security and Jira owners approve the model, or a documented blocking constraint is recorded.
 
+**Current disposition (2026-11-04): Blocked.** The T0.1 decision record in `specification.md` documents the blocking constraint: Jira Server/API and identity-provider capabilities are unconfirmed, no access or scheduled-refresh model is selected, and security/Jira-owner approvals are not recorded. The blocking-constraint acceptance path is documented; the identity-model criteria remain unresolved. Do not treat this as approval or proceed with Jira authorization, data access, persistence, synchronization, or user-facing Jira data. Reopen this task when the required technical facts and owner decisions are available.
+
 ### T0.2 — Approve external stakeholder data policy
 
 **Depends on**: None; coordinate with T0.1 as needed.
