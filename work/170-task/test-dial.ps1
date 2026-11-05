@@ -1,1 +1,1 @@
-curl.exe -X POST "https://ai-proxy.lab.epam.com/openai/deployments/gpt-4o/chat/completions" -H "Content-Type: application/json" -H "api-key: $env:DIAL_API_KEY" --% -d "{\"messages\": [{\"role\": \"user\", \"content\": \"What is the capital of France?\"}], \"temperature\": 0.0}"  
+curl.exe -X POST "https://ai-proxy.lab.epam.com/openai/deployments/gpt-4o/chat/completions" -H "Content-Type: application/json" -H "api-key: $env:DIAL_API_KEY" --% -d "{\"messages\": [{\"role\": \"user\", \"content\": \"What is the capital of France?\"}], \"temperature\": 0.0}"   
