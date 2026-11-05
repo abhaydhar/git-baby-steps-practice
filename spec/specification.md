@@ -6,11 +6,19 @@
 - **Status**: Draft — pre-implementation decisions remain
 - **Input**: `project_spec.md` and the Module 08 requirements report
 
-## Summary
+## Full Product Vision
 
-Build a separate, read-only web application for team members, project stakeholders, and organization-authorized external stakeholders to review Jira sprint progress and delivery status. The dashboard must include all sprints in the approved project scope by default, support the required filters, show issue-count progress and available issue details, and request refreshed Jira data on dashboard use as well as through an independent daily schedule.
+The eventual product is a separate, read-only web application for team members, project stakeholders, and organization-authorized external stakeholders to review Jira sprint progress and delivery status. The full product is intended to include all sprints in the approved project scope by default, required filters, issue-count progress and available issue details, and refreshed Jira data on dashboard use as well as through an independent daily schedule.
 
-This specification covers only the Jira sprint dashboard described in `project_spec.md`; it does not define Confluence automation. The product is not implementation-ready until the blocking access, Jira contract, and metric decisions below are resolved or explicitly accepted out of scope.
+This specification covers only the Jira sprint dashboard described in `project_spec.md`; it does not define Confluence automation. The full product remains not implementation-ready until its blocking access, Jira contract, and metric decisions are resolved or explicitly accepted out of scope.
+
+### Prototype Scope Baseline
+
+The approved prototype is narrower than the full product vision. The **Prototype Scope Decisions** below are authoritative for prototype work and take precedence over broader future-product language in the user stories, functional requirements, quality requirements, success criteria, assumptions, and open questions. Those broader sections describe the future product; they do not authorize prototype implementation of excluded capabilities.
+
+For this prototype, use invented local mock data only. Do not connect to Jira or an identity provider, access real user data, serve dashboard data through an API, persist Jira-like records, or imply that mock data is current. The only approved fixture behavior is the status mapping described in G-05; no issue-level or aggregate display is approved by this baseline. G-01 remains an explicit blocker for any future real Jira access, and no Jira-owner or security-owner approval is implied.
+
+Decisions confirmed only for the prototype are listed in G-01 through G-14. Findings G-15 through G-23 and other unanswered production questions remain unresolved or deferred as stated; this baseline does not decide them or convert them into approved out-of-scope product policy.
 
 ## Prototype Scope Decisions
 
@@ -42,12 +50,14 @@ These decisions do not resolve the remaining findings in `spec/clarify.md`. In p
 - Prototype data is local and synthetic; it is not served through a dashboard API and must not be represented as current Jira data.
 - Prototype exclusions and future product requirements are distinguished in the decision record above. A deferred requirement is not an accepted implementation or acceptance criterion for this prototype.
 - The initial product is read-only with respect to Jira issues. It does not create, edit, transition, or administer Jira issues.
-- The application reads Jira data through the confirmed Jira Server API. Jira calls and privileged credentials remain on the Express backend.
+- For the future product, the application reads Jira data through the confirmed Jira Server API; Jira calls and privileged credentials remain on the Express backend. This is not a prototype data flow.
 - “All sprints” means the complete set discoverable through the confirmed API for the approved project/board scope, including historical, active, and future sprints, verified against a known source of truth. It does not mean every sprint on the Jira instance.
 - Confluence automation is a separate feature and requires its own specification and plan.
 - Decisions not supplied by the source requirements are recorded as open questions; this document does not approve an identity provider, Jira endpoint, project scope, or external data-sharing policy.
 
-## User Scenarios & Testing
+## Future Product User Scenarios & Testing
+
+The following user stories and scenarios describe the future product vision. They are not prototype acceptance criteria where they conflict with the Prototype Scope Baseline or the G-01 through G-14 decisions.
 
 ### User Story 1 — Review sprint progress (Priority: P1)
 
@@ -108,7 +118,9 @@ As a team lead, I want dashboard configuration to follow the team's Jira governa
 3. **Given** an external stakeholder has been authorized under the organization's policy, **When** they use the dashboard, **Then** they can use the dashboard as required by that policy.
 4. **Given** the team lead changes dashboard configuration, **When** the change is proposed, **Then** it can be reviewed through the team's normal Jira governance process.
 
-## Requirements
+## Future Product Requirements
+
+The functional requirements and success criteria below describe the future product. For the prototype, apply the Prototype Scope Baseline and the implementation scope in `spec/plan.md`; deferred requirements must not be reported as satisfied.
 
 ### Functional Requirements
 
